@@ -8,14 +8,52 @@
 //
 //
 //
+var fs = require('fs');
 
-let b = 7;
-let a = 4;
 
-let name = "Tommy"
-name = name.toUpperCase();
-console.log(name)
 
+
+
+
+
+// var obj = JSON.parse(fs.readFileSync('./out.json', 'utf8'));
+
+
+
+// obj = obj.filter(o => o.aqm.r3000['$numberInt'] > 70)
+// var string = ""
+// string += "id,name,time\n"
+// obj.map(i => {
+//   string += i._id.$oid + ", " + i.aqm.r3000['$numberInt'] + ", " + i.gps.system_time + "\n"
+// })
+// console.log(string);
+// // node index.js > bla.csv
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// fs.writeFile("./bla.csv", string, function(err) {
+//   if(err) {
+//     return console.log(err);
+//   }
+//
+//   console.log("The file was saved!");
+// });
+
+
+
+
+// var myReadStream = fs.createReadStream(__dirname + "/out.json", "utf8")
+// var myWriteStream = fs.createWriteStream(__dirname + "/out.txt")
+// myReadStream.on('data', (chunk) => {
+//   console.log("new chunk");
+//   myWriteStream.write(chunk)
+// })
 
 // var http = require("http");
 //
