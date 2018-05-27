@@ -1,14 +1,14 @@
-function bla (arr) {
+function myFunction (arr) {
   return arr.reduce(function(a, b) {
     return a + b
   }, 0)
 }
 
-module.exports.bla = bla
-//
-//
-//
-// exports.bla = function(arr) {
+module.exports.calculateTheNumbers = myFunction
+
+
+
+// exports.calculateTheNumbers = function(arr) {
 //   return arr.reduce(function(a, b) {
 //     return a + b
 //   }, 0)
