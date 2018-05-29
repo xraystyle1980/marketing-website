@@ -7,11 +7,27 @@ var obj = JSON.parse(file);
 
 const express = require('express');
 const app = express()
+app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
     console.log("route /");
-    console.log(req.method)
-    res.sendFile(__dirname + '/index.html');
+    let confirmedUsers = []
+    var arrayOfFiles = fs.readdirSync('./users/');
+    arrayOfFiles.forEach(file => {
+        var readFile = fs.readFileSync(`./users/${file}`)
+        let user = JSON.parse(readFile);
+        if(user.status == "confirmed"){
+            confirmedUsers.push(user)
+        }
+    });
+    res.render('index', { confirmedUsers: confirmedUsers})
+})
+    
+app.get('/admin', (req, res) => {
+    res.render('admin', {})
+})
+app.get('/register', (req, res) => {
+    res.render('register', {})
 })
 
 app.get('/api/events', (req, res) => {
@@ -34,24 +50,22 @@ app.get('/api/events/:id', (req, res) => {
 
 app.get('/create', (req, res) => {
   let uuid = uuidv4();
-    let obj = {
+  let obj = {
       uuid: uuid,
       email: req.query.email,
       pw: req.query.pw,
       status: "unconfirmed",
       session: req.query.staysignedin ? true : false
+  }
+  console.log("route /create");
+
+  fs.writeFile(`./users/${uuid}.json`, JSON.stringify(obj), function(err) {
+    if (err) {
+        return console.log(err);
     }
-    console.log("route /create");
-
-    fs.writeFile(`./users/${uuid}.json`, JSON.stringify(obj), function(err) {
-        if (err) {
-            return console.log(err);
-        }
-
-        console.log("The file was saved!");
-        res.redirect("/");
-    });
-
+    console.log("The file was saved!");
+    res.redirect("/");
+});
 })
 
 app.get('/users/verify/:token', (req, res) => {
@@ -85,35 +99,10 @@ app.get('*', (req, res) => {
     res.send("route not found")
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.get('/events/random', (req, res) => {
-//     console.log("route /events/random");
-//     var obj = JSON.parse(file);
-//     console.log(Math.floor(Math.random() * (obj.length - 0 + 1)) + 0);
-
-//     res.send(obj[Math.floor(Math.random() * (obj.length - 0 + 1)) + 0])
-// })
-
-
-
-
-
-
-
 var port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Example app listening on port ${process.env.PORT}!`))
+
+
+
+
+
