@@ -2,11 +2,8 @@ extends layout.pug
 block content
   +navigation
   .container.mt-5.text-left
-    h1 Post route
-
-    span.mr-3="name:" + post.name
-    span.mr-3="content:" + post.content
-    span.mr-3="order:" + post.order
+    h1.mr-3=post.name
+    p.mr-3=post.content
       
-    a(href="/posts") Back
+    a.btn.btn-outline-primary(href="/posts") Back
   
