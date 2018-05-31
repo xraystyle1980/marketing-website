@@ -2,10 +2,5 @@ extends layout.pug
 block content
   +navigation
   .container.mt-5.text-left
-    h1 Admin route
-    h3 All registered users
-    ul.list-group
-      each user in confirmedUsers
-        li.list-group-item
-          img.pr-2.rounded-circle(src="http://avatar.3sd.me/size")
-          = user.email
+    h1 Index
+    +postlist(public=true)

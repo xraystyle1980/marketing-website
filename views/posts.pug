@@ -1,0 +1,27 @@
+extends layout.pug
+block content
+  +navigation
+  .container.mt-5.text-left
+    .row
+      .col-md-8
+        h2 Posts route
+        +postlist
+
+              
+      .col-md-4
+        
+        form.form-signin(method='POST', action='http://localhost:4000/posts?alert=create')
+          h2 Create a new Post
+          
+          .mb-3
+            label.sr-only(for='inputName') Name
+            input#inputName.form-control(name='name', type='text', placeholder='Name', required='', autofocus='')
+            
+          .mb-3
+            label.sr-only(for='inputContent') Content
+            textarea#inputContent.form-control(name='content', type='password', placeholder='Content', required='')
+          .mb-3
+            label.sr-only(for='inputContent') Order
+            input#inputOrder.form-control(name='name', type='text', placeholder='Order', required='', autofocus='')
+            
+          button.btn.btn-lg.btn-primary.btn-block(type='submit') Create

@@ -1,0 +1,14 @@
+mixin postlist
+  ul.list-group
+    each post in posts
+      li.list-group-item
+        h2.mr-3=post.name
+        p.mr-3=post.content
+        div.mr-3=post.order
+        form.d-flex.justify-content-between(method='POST', action='http://localhost:4000/posts/delete/'+post._id +'?_method=DELETE')
+          .d-flex.align-items-center
+            a.mr-2(href="/posts/"+post._id) Show
+            a.mr-2(href="/posts/edit/"+post._id) Edit
+          if !public
+            button.btn.btn-outline-danger(type='submit') delete
+
