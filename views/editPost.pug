@@ -4,7 +4,7 @@ block content
   .container.mt-5.text-left
     h1 Edit post
           
-    form.form-signin(method='POST', action='http://localhost:4000/posts/update/'+post._id+'?_method=PUT')
+    form.form-signin(method='POST', action='./posts/update/'+post._id+'?_method=PUT')
       h1.h3.mb-3.font-weight-normal Create a new Post
       
       .mb-3
@@ -20,4 +20,4 @@ block content
         
       button.btn.btn-lg.btn-primary.btn-block(type='submit') Update
 
-      a(href="/posts")="Back"
+      a(href="./posts")="Back"
