@@ -38,10 +38,10 @@ router.post('/', function(req, res) {
 
     // save the post and check for errors
     post.save(function(err) {
-        if (err)  
+        if (err)
           res.send(err);
         console.log("Post created:", post);
-        res.redirect("/posts?alert=created")
+        res.redirect(res.locals.domain+"posts?alert=created")
     });
 });
 
@@ -54,7 +54,7 @@ router.delete('/delete/:id', function(req, res) {
             res.send(err);
 
         console.log("Post deleted")
-        res.redirect("/posts?alert=deleted")
+        res.redirect(.locals.domain+"posts?alert=deleted")
     });
 });
 router.put('/update/:id',function(req, res) {
@@ -75,7 +75,7 @@ router.put('/update/:id',function(req, res) {
                 res.send(err);
 
             console.log("Post updated:", post);
-            res.redirect('/posts/edit/'+post._id+'?alert=deleted')
+            res.redirect(.locals.domain+'posts/edit/'+post._id+'?alert=deleted')
         });
 
     });
