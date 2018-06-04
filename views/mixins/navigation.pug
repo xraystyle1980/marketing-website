@@ -1,5 +1,6 @@
 mixin navigation
   nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
     a.navbar-brand(href=domain) Frontend
     button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
       span.navbar-toggler-icon

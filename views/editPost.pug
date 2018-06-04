@@ -6,6 +6,7 @@ block content
     .row
       .col-md-6.offset-md-3
         h1 Edit post
+        //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
         form.mb-3.form-signin(method='POST', action=domain+'posts/update/'+post._id+'?_method=PUT')
           
           .mb-3
@@ -14,11 +15,12 @@ block content
             
           .mb-3
             label.sr-only(for='inputContent') Content
-            textarea#inputContent.form-control(name='content', type='password', placeholder='Content', required='')=post.content
+            textarea#inputContent.form-control(rows='20' name='content', type='password', placeholder='Content', required='')=post.content
           .mb-3
             label.sr-only(for='inputContent') Order
             input#inputOrder.form-control(name='order', type='number', placeholder='Order', value=post.order, required='', autofocus='')
             
           button.btn.btn-lg.btn-primary.btn-block(type='submit') Update
 
+        //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
         a.btn.btn-outline-primary(href=domain+"posts")="Back"
