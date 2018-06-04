@@ -11,7 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
-  console.log(req.query.alert);
+  res.locals.domain = process.env.DOMAIN || "/";
+  console.log(process.env.DOMAIN);
   if(req.query.alert === "created"){
     res.locals.message = "Post created successfully!"
     res.locals.color = "alert-success"

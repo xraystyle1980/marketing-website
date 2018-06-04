@@ -1,14 +1,13 @@
 mixin postlist(public)
   ul.list-group
     each post in posts
-      li.list-group-item
+      li.list-group-item.mb-3
         h2.mr-3=post.name
         p.mr-3=post.content
         div.mr-3=post.order
-        form.d-flex.justify-content-between(method='POST', action='./posts/delete/'+post._id +'?_method=DELETE')
-          a.btn.btn-outline-primary.mr-2(href="./posts/"+post._id) Show
+        form.d-flex.justify-content-between(method='POST', action=domain+'posts/delete/'+post._id +'?_method=DELETE')
+          a.btn.btn-outline-primary.mr-2(href=domain+"posts/"+post._id) Show
           if !public
             .d-flex.align-items-center
-              a.btn.btn-outline-primary.mr-2(href="./posts/edit/"+post._id) Edit
+              a.btn.btn-outline-primary.mr-2(href=domain+"posts/edit/"+post._id) Edit
               button.btn.btn-outline-danger(type='submit') delete
-
