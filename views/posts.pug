@@ -23,5 +23,10 @@ block content
           .mb-3
             label.sr-only(for='inputContent') Order
             input#inputOrder.form-control(name='order', type='number', placeholder='Order', required='', autofocus='')
+
+          each category in categories
+            span.mr-3
+              input(type="checkbox", name=`categories[]`, value=category._id, id=category._id)
+              label(for=category._id)=category.name
             
           button.btn.btn-lg.btn-primary.btn-block(type='submit') Create

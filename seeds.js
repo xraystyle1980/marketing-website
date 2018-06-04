@@ -6,6 +6,7 @@ mongoose.connect(process.env.MONGOURL);
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 
 const Post = require('./models/Post');
+const Category = require('./models/Category');
 
 const posts = [
   { name: 'Basketball', content: 'Ac consectetur ac, vestibulum at eros. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas faucibus mollis interdum.', order: 1},
@@ -14,15 +15,22 @@ const posts = [
   { name: 'Ping Pong', content: 'Consectetur ac, vestibulum at eros. Nullam id dolor id nibh ultricies vehicula Michael Phelps is the fast fish.', order: 4}
 ];
 
+const categories = [
+  { name: 'Hard'},
+  { name: 'Easy'}
+];
+
 async function deleteData() {
   console.log('😢😢 Goodbye Data...');
   await Post.remove();
+  await Category.remove();
   console.log('Data Deleted. To load sample data, run\n\n\t node seeds.js\n\n');
   process.exit();
 }
 
 async function loadData() {
   try {
+    await Category.insertMany(categories);
     await Post.insertMany(posts);
     console.log('👍 Done!');
     process.exit();

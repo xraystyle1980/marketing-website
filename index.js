@@ -31,11 +31,14 @@ app.use(methodOverride('_method'))
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOURL);
 
+let categoryRoutes = require('./routes/categories')
 let postRoutes = require('./routes/posts')
 let indexRoutes = require('./routes/index')
 
-app.use("/posts", postRoutes)
 app.use("/", indexRoutes)
+app.use("/posts", postRoutes)
+app.use("/categories", categoryRoutes)
+
 app.set('views', path.join(__dirname, 'views/'));
 app.set('view engine', 'pug')
 
