@@ -6,7 +6,7 @@ mongoose.connect(process.env.MONGOURL);
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 
 const Post = require('./models/Post');
-const Category = require('./models/Category');
+const Category = require('./models/category');
 
 const posts = [
   { name: 'Basketball', content: 'Ac consectetur ac, vestibulum at eros. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas faucibus mollis interdum.', order: 1},
