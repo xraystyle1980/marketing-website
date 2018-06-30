@@ -1,9 +1,10 @@
 # This is the Ultrablog
 [![Greenkeeper badge](https://badges.greenkeeper.io/spielhoelle/ultrablog.svg)](https://greenkeeper.io/)
 
-Node/express blog application illustrating routing basics
+Node/express blog application illustrating routing and mongooose basics.
+[Live verion](https://tmy.menkent.uberspace.de/ultrablog/posts)
 
-![Screenshot](screenshot.jpg)]
+![Screenshot](screenshot.jpg)
 
 ## Installation:
 
