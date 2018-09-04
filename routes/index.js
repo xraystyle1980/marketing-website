@@ -1,6 +1,7 @@
 'use strict';
 const Post = require('../models/post');
 const Contact = require('../models/contact');
+const Category = require('../models/category');
 
 const express = require('express')
 const router = express.Router()
@@ -9,7 +10,13 @@ const nodemailer = require('nodemailer');
 
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find({}).sort('order').exec({});
+    const posts = await Post.find({})
+      .populate('categories')
+      .sort('order')
+      .exec({});
+    //const categories = await Category.find({post.categories}).exec({});
+
+    console.log('#####', posts);
     res.render('index', {
       posts: posts
     })
