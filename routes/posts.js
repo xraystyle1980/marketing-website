@@ -5,10 +5,10 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/',async  function(req, res) {
-  console.log("GET Route: /posts")
   //here we get the whole collection and sort by order
   let posts = await Post.find({}).sort('order').exec();
   let categories = await Category.find({}).exec();
+
   res.render('posts', {
           posts: posts,
           categories: categories,
@@ -18,7 +18,6 @@ router.get('/',async  function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  console.log("GET Route: /posts/:id")
   Post.findById(req.params.id, function(err, post) {
       res.render('post', {
           post: post
@@ -27,18 +26,28 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/edit/:id', function(req, res) {
-  console.log("GET Route: /posts/edit/:id")
-  Post.findById(req.params.id, function(err, post) {
-      res.render('editPost', {
-          post: post,
-          message: res.locals.message,
-          color: res.locals.color
-      })
+  Post.findById(req.params.id, async function(err, post) {
+  let allcategories = await Category.find({}).exec();
+  all = allcategories.map(cat=> {
+    let match = post.categories.map(pcat => pcat.toString()).includes(cat._id.toString())
+      
+    if (match) {
+        return Object.assign({selected: true}, cat._doc)
+    } else {
+        return cat._doc;
+    }
+  })
+
+    res.render('editPost', {
+        post: post,
+        categories: all,
+        message: res.locals.message,
+        color: res.locals.color
+    })
   });
 });
 
 router.post('/', function(req, res) {
-  console.log("POST Route: /posts")
   var post = new Post(); // create a new instance of the post model
   post.name = req.body.name; // set the posts name (comes from the request)
   post.content = req.body.content; // set the posts name (comes from the request)
@@ -55,8 +64,6 @@ router.post('/', function(req, res) {
 });
 
 router.delete('/delete/:id', function(req, res) {
-  console.log("DELETE Route: /posts/:id")
-    console.log("DELETE");
     Post.remove({
         _id: req.params.id
     }, function(err, post) {
@@ -69,7 +76,6 @@ router.delete('/delete/:id', function(req, res) {
 });
 router.put('/update/:id',function(req, res) {
 
-  console.log("Route: /posts/update/:id")
     // use our post model to find the post we want
     Post.findById(req.params.id, function(err, post) {
 
@@ -79,6 +85,8 @@ router.put('/update/:id',function(req, res) {
         post.name = req.body.name; // update the posts info
         post.content = req.body.content; // update the posts info
         post.order = req.body.order; // update the posts info
+        post.categories = req.body.categories;
+
 
         // save the post
         post.save(function(err) {

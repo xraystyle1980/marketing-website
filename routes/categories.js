@@ -4,7 +4,6 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/',async  function(req, res) {
-  console.log("GET Route: /categories")
   //here we get the whole collection and sort by order
   let categories = await Category.find({}).exec();
   res.render('categories', {
@@ -15,7 +14,6 @@ router.get('/',async  function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  console.log("GET Route: /categories/:id")
   Category.findById(req.params.id, function(err, category) {
       res.render('category', {
           category: category
@@ -24,7 +22,6 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/edit/:id', function(req, res) {
-  console.log("GET Route: /categories/edit/:id")
   Category.findById(req.params.id, function(err, category) {
       res.render('editCategory', {
           category: category,
@@ -35,7 +32,6 @@ router.get('/edit/:id', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  console.log("POST Route: /categories")
   var category = new Category(); // create a new instance of the category model
   category.name = req.body.name; // set the categories name (comes from the request)
 
@@ -49,8 +45,6 @@ router.post('/', function(req, res) {
 });
 
 router.delete('/delete/:id', function(req, res) {
-  console.log("DELETE Route: /categories/:id")
-    console.log("DELETE");
     Category.remove({
         _id: req.params.id
     }, function(err, category) {
@@ -63,7 +57,6 @@ router.delete('/delete/:id', function(req, res) {
 });
 router.put('/update/:id',function(req, res) {
 
-  console.log("Route: /categories/update/:id")
     // use our category model to find the category we want
     Category.findById(req.params.id, function(err, category) {
 

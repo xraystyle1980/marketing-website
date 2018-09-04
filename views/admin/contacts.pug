@@ -1,0 +1,15 @@
+extends ../layout.pug
+block content
+  +navigation
+  .container.mt-5.text-left
+    .row
+      .col-md-8
+        h2 All received contacts
+
+        ul.list-group
+          each contact in contacts
+            li.list-group-item.mb-3
+              h2.mr-3=contact.name
+              small.text-muted=contact.createdAt
+              p.mr-3=contact.body
+              a.mr-3(href='mailto:'+ contact.email)=contact.email

@@ -11,8 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
+  console.log(req.method, req.headers.host + req.url)
+  next()
+})
+app.use(function (req, res, next) {
   res.locals.domain = process.env.DOMAIN || "/";
-  console.log(process.env.DOMAIN);
   if(req.query.alert === "created"){
     res.locals.message = "Post created successfully!"
     res.locals.color = "alert-success"
@@ -34,10 +37,12 @@ mongoose.connect(process.env.MONGOURL);
 let categoryRoutes = require('./routes/categories')
 let postRoutes = require('./routes/posts')
 let indexRoutes = require('./routes/index')
+let contactsRoutes = require('./routes/admin/contacts')
 
 app.use("/", indexRoutes)
 app.use("/posts", postRoutes)
 app.use("/categories", categoryRoutes)
+app.use("/admin/contacts", contactsRoutes)
 
 app.set('views', path.join(__dirname, 'views/'));
 app.set('view engine', 'pug')
