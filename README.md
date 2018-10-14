@@ -1,20 +1,36 @@
-# This is the Ultrablog
-[![Greenkeeper badge](https://badges.greenkeeper.io/spielhoelle/ultrablog.svg)](https://greenkeeper.io/)
-
-Node/express blog application illustrating routing and mongooose basics.
-[Live verion](https://tmy.menkent.uberspace.de/ultrablog/posts)
+# DCI marketing website
 
 ![Screenshot](screenshot.jpg)
 
+## Architecture:  
+NodeJs/Express/Passport/Pug
+
+## Online
+[Live](digitalcareerinstitute.org)  
+[Staging](dci.tmy.io)
+
+
 ## Installation:
 
-copy the `.env.example` to `.env` and put your secrets there.
+1. Install `NodeJS/npm`
+1. Install `MongoDB`
+1. copy the `.env.example` to `.env` and put your secrets there.
 
-Example setup:
+#### Example .env:
 ```
 PORT=3000
-MONGOURL=mongodb://mongouser:mongopassword@domain.mlab.com:47499/superblog
+MONGOURL=mongodb://localhost:27017/marketing-website
 DOMAIN=/
 ```
 
-Run app: `npm start`
+## Run the app
+Start normal: `npm start`  
+Start development: `nodemon index.js`
+
+## Insert optional example data
+##### Create a few Posts and Categories in the selected DB.  
+Run seed script:   
+`npm run seed`  
+
+Run the `seed:delete` script:   
+`npm run seed:delete`
