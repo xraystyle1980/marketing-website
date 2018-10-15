@@ -1,7 +1,27 @@
 extends layout.pug
 block content
   +navigation
-  .container.mt-5.text-left
-    h1 DCI
-    +postlist(true)
-    +contactform
+  .section
+    +jumbotron
+  .section
+    +testimonialsCourses
+  .section
+    +testimonialsDevugees
+  .section
+    +statsCounter
+  .section
+    +quote
+  .section
+    +partners
+  .section
+    +subscribe
+  .section
+    +footer
+    //+postlist(true)
+  
+  style.
+    .section {
+      margin: 0 0 200px 0;
+    }
+    
+  

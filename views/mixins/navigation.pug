@@ -1,15 +1,37 @@
 mixin navigation
-  nav.navbar.navbar-expand-lg.navbar-light.bg-light
-    //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
-    a.navbar-brand(href=domain) Frontend
-    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-      span.navbar-toggler-icon
-    #navbarSupportedContent.collapse.navbar-collapse
-      ul.navbar-nav.mr-auto
+ nav.navbar.navbar-dark.navbar-expand-md.bg-primary.justify-content-center
+  a.navbar-brand.d-flex.w-50.mr-auto(href=domain) DCI
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsingNavbar3')
+    span.navbar-toggler-icon
+  #collapsingNavbar3.navbar-collapse.collapse.w-100
+    ul.nav.navbar-nav.ml-auto.w-100.justify-content-end
+      li.nav-item.dropdown
+        a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          | Courses
+        .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href=domain+'categories') One to One Coaching
+          a.dropdown-item(href=domain+'categories') Orientation Course
+          a.dropdown-item(href=domain+'categories') One Year Program
+      li.nav-item.dropdown
+        a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          | Events
+        .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href=domain+'admin/contacts') Berlin
+          a.dropdown-item(href=domain+'admin/contacts') Düsseldorf
+          a.dropdown-item(href=domain+'admin/contacts') Hamburg
+          a.dropdown-item(href=domain+'admin/contacts') Köln
+      li.nav-item
+        a.nav-link(href=domain+'posts') Stories
+      li.nav-item
+        a.nav-link(href=domain+'posts') Blog
+      li.nav-item.dropdown
+        a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          | Get Involved
+        .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href=domain+'admin/contacts') Jobcenter/AA
+          a.dropdown-item(href=domain+'admin/contacts') Support us
+          a.dropdown-item(href=domain+'admin/contacts') Become a buddy
+          a.dropdown-item(href=domain+'admin/contacts') Teach at DCI
+          a.dropdown-item(href=domain+'admin/contacts') Jobs
         li.nav-item
-          a.nav-link(href=domain+'posts') Posts
-        li.nav-item
-          a.nav-link(href=domain+'categories') Categories
-        li.nav-item
-          a.nav-link(href=domain+'admin/contacts') Contacts
-      
+          a.nav-link(href='#') Login

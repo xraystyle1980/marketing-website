@@ -1,0 +1,40 @@
+mixin quote
+
+  .section-mission
+    h2.mission-title
+      p.quote The Digital Career Institute was born
+      p.quote as an initiative to integrate refugees
+      p.quote into digital jobs
+
+
+
+
+style.
+  .section-mission::before {
+    content: '';
+    width: 110px;
+    height: 70px;
+    background-image: url(https://unveilchurch.org/wp-content/uploads/2013/06/gray-quotation-marks-hi2.png);
+    background-size: cover;
+    display: block;
+    opacity: 0.25;
+    margin: 0 auto 1rem;
+  }
+
+  .mission-title::after {
+    content: '';
+    width: 110px;
+    height: 70px;
+    background-image: url(https://unveilchurch.org/wp-content/uploads/2013/06/gray-quotation-marks-hi2.png);
+    background-size: cover;
+    display: block;
+    opacity: 0.25;
+    margin: 0 auto 1rem;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+
+  .quote {
+    color: #0069D9;
+    font-size: 3rem;
+  }
