@@ -13,11 +13,16 @@
     "nodemon": "^1.17.5",
     "pug": "^2.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0"
+  },
   "scripts": {
     "start": "nodemon index.js",
     "seed": "node seeds.js",
-    "seed:delete": "node seeds.js --delete"
+    "seed:delete": "node seeds.js --delete",
+    "test": "NODE_ENV=test mocha test/ --timeout 10000 --exit"
   },
   "keywords": [],
   "author": "",
