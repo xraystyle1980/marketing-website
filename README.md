@@ -1,4 +1,5 @@
 # DCI marketing website
+[![Build Status](https://travis-ci.org/DigitalCareerInstitute/marketing-website.svg?branch=master)](https://travis-ci.org/DigitalCareerInstitute/marketing-website)
 
 ![Screenshot](screenshot.jpg)
 
