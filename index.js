@@ -1,4 +1,4 @@
-require('dotenv').config({path: __dirname + '/.env'});
+require('dotenv').config({ path: __dirname + '/.env' });
 
 const express = require('express');
 const app = express();
@@ -19,13 +19,13 @@ app.use(function (req, res, next) {
 });
 app.use(function (req, res, next) {
   res.locals.domain = process.env.DOMAIN || "/";
-  if(req.query.alert === "created"){
+  if (req.query.alert === "created") {
     res.locals.message = "Post created successfully!"
     res.locals.color = "alert-success"
-  }else if(req.query.alert === "deleted"){
+  } else if (req.query.alert === "deleted") {
     res.locals.message = "Post deleted successfully!"
     res.locals.color = "alert-success"
-  }else if(req.query.alert === "updated"){
+  } else if (req.query.alert === "updated") {
     res.locals.message = "Post updated successfully!"
     res.locals.color = "alert-success"
   }
@@ -37,14 +37,16 @@ app.use(methodOverride('_method'));
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOURL);
 
-let categoryRoutes = require('./routes/categories');
+let categoryRoutes = require('./routes/admin/categories');
 let postRoutes = require('./routes/posts');
+let postsRoutes = require('./routes/admin/posts');
 let indexRoutes = require('./routes/index');
 let contactsRoutes = require('./routes/admin/contacts');
 
 app.use("/", indexRoutes);
 app.use("/posts", postRoutes);
-app.use("/categories", categoryRoutes);
+app.use("/admin/posts", postsRoutes);
+app.use("/admin/categories", categoryRoutes);
 app.use("/admin/contacts", contactsRoutes);
 
 app.set('views', path.join(__dirname, 'views/'));
@@ -53,7 +55,7 @@ app.set('view engine', 'pug');
 let port = process.env.PORT || 3000;
 
 //List of routes printed on server start
-function print (path, layer) {
+function print(path, layer) {
   if (layer.route) {
     layer.route.stack.forEach(print.bind(null, path.concat(split(layer.route.path))))
   } else if (layer.name === 'router' && layer.handle.stack) {
@@ -65,7 +67,7 @@ function print (path, layer) {
   }
 }
 
-function split (thing) {
+function split(thing) {
   if (typeof thing === 'string') {
     return thing.split('/')
   } else if (thing.fast_slash) {
