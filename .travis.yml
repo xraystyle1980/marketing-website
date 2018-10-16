@@ -8,3 +8,8 @@ script:
 cache:
   directories:
     - "node_modules"
+      
+env:
+  - PORT=4000
+  - MONGOURL=mongodb://localhost:27017/marketing-website
+  - DOMAIN=localhost
