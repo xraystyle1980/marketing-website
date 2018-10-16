@@ -17,7 +17,6 @@ app.use(function (req, res, next) {
   console.log(req.method, req.headers.host + req.url)
   next()
 });
-console.log('url', url);
 app.use(function (req, res, next) {
   res.locals.domain = `http://${url}` || "/";
   if (req.query.alert === "created") {

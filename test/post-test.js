@@ -1,21 +1,25 @@
 "use strict";
-const app = require('../server.js')
 var expect  = require('chai').expect;
-var request = require('request');
+var request = require('supertest');
 var { url } = require('../helper.js')
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOURL);
 const db = mongoose.connection;
 const Post = require('../models/post');
+var server = require('../server');
 
 describe('Posts', function() {
   describe('DOM tests', function() {
-
-    it('checks for some text in the dom', function(done) {
-        request(`http://localhost:4000/posts`, function(error, response, body) {
-            expect(body).to.contain('Posts route');
-            done();
-        });
+  it('checks for some text in the dom', function(done) {
+    request(server)
+    .get('/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end(function(err, res) {
+      if (err) return done(err);
+      res.text.includes("Post route")
+      done();
+    });
     });
   });
   describe('Model tests', function() {
