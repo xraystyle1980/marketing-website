@@ -1,11 +1,9 @@
 "use strict";
-const path = require('path');
-require('dotenv').config({path: path.resolve(__dirname, '../.env')});
+const app = require('../server.js')
 var expect  = require('chai').expect;
 var request = require('request');
-var url = `http://${process.env.DOMAIN}:${process.env.PORT}`
+var { url } = require('../helper.js')
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOURL);
 mongoose.connect(process.env.MONGOURL);
 const db = mongoose.connection;
 const Post = require('../models/post');
@@ -14,8 +12,8 @@ describe('Posts', function() {
   describe('DOM tests', function() {
 
     it('checks for some text in the dom', function(done) {
-        request(`${url}/posts`, function(error, response, body) {
-            expect(body).to.contain('Create a new Post');
+        request(`http://localhost:4000/posts`, function(error, response, body) {
+            expect(body).to.contain('Posts route');
             done();
         });
     });
@@ -30,12 +28,7 @@ describe('Posts', function() {
     });
   });
 });
-// NPM install mongoose and chai. Make sure mocha is globally
-// installed
-//Create a new collection called 'Post'
 describe('Database Tests', function() {
-  //Before starting the test, create a sandboxed database connection
-  //Once a connection is established invoke done()
   before(function (done) {
     mongoose.connect('mongodb://localhost/testDatabase');
 
