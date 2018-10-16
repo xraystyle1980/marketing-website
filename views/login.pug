@@ -1,0 +1,17 @@
+extends layout.pug
+block content
+  +navigation
+  .container.mt-5.text-left
+          
+    .row
+      .col
+        h1 Login
+
+        form(method='post' action='/users/login')
+          .form-group
+            label Username
+            input.form-control(type='text' name='username' placeholder='Username')
+          .form-group
+            label Password
+            input.form-control(type='password' name='password' placeholder='Password')
+          button.btn.btn-default(type='submit') Submit
