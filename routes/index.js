@@ -25,7 +25,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/contact", async (req, res) => {
+ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    //req.flash('error_msg','You are not logged in');
+    res.redirect('/login');
+  }
+};
+
+router.post('/contact', async (req, res) => {
   var contact = new Contact(); // create a new instance of the contact model
 
   contact.name = req.body.name;
@@ -52,10 +61,10 @@ router.post("/contact", async (req, res) => {
   // setup email data with unicode symbols
   let mailOptions = {
     from: contact.name,
-    to: "tfkuhnert@gmail.com",
+    to: 'tfkuhnert@gmail.com',
     subject: `Message from ${contact.name}`,
     text: `${contact.body}`,
-    html: `${contact.body}`
+    html: `${contact.body}`,
   };
 
   // send mail with defined transport object
