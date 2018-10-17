@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
       .exec({});
     //const categories = await Category.find({post.categories}).exec({});
 
-    console.log('#####', posts);
     res.render('index', {
       posts: posts
     })
