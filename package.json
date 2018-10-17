@@ -24,6 +24,7 @@
     "express-session": "*",
     "express-validator": "*",
     "mongodb": "*",
+    "passport": "*",
     "passport-http": "*",
     "passport-local": "*"
   },
