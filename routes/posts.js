@@ -59,7 +59,7 @@ router.get('/:id', function (req, res) {
 //       if (err)
 //         res.send(err);
 //       console.log("Post created:", post);
-//       res.redirect(res.locals.domain+"posts?alert=created")
+//       res.redirect("/posts?alert=created")
 //   });
 // });
 
@@ -71,7 +71,7 @@ router.get('/:id', function (req, res) {
 //             res.send(err);
 
 //         console.log("Post deleted")
-//         res.redirect(res.locals.domain+"posts?alert=deleted")
+//         res.redirect("/posts?alert=deleted")
 //     });
 // });
 // router.put('/update/:id',function(req, res) {
@@ -94,7 +94,7 @@ router.get('/:id', function (req, res) {
 //                 res.send(err);
 
 //             console.log("Post updated:", post);
-//             res.redirect(res.locals.domain+'posts/edit/'+post._id+'?alert=deleted')
+//             res.redirect('/posts/edit/'+post._id+'?alert=deleted')
 //         });
 
 //     });

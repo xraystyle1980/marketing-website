@@ -59,7 +59,7 @@ router.post('/', function (req, res) {
     if (err)
       res.send(err);
     console.log("Post created:", post);
-    res.redirect(res.locals.domain + "/admin/posts?alert=created")
+    res.redirect("/admin/posts?alert=created")
   });
 });
 
@@ -71,7 +71,7 @@ router.delete('/delete/:id', function (req, res) {
       res.send(err);
 
     console.log("Post deleted")
-    res.redirect(res.locals.domain + "/admin/posts?alert=deleted")
+    res.redirect("/admin/posts?alert=deleted")
   });
 });
 router.put('/update/:id', function (req, res) {
@@ -94,7 +94,7 @@ router.put('/update/:id', function (req, res) {
         res.send(err);
 
       console.log("Post updated:", post);
-      res.redirect(res.locals.domain + '/admin/posts/edit/' + post._id + '?alert=updated')
+      res.redirect('/admin/posts/edit/' + post._id + '?alert=updated')
     });
 
   });

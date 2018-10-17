@@ -18,7 +18,6 @@ app.use(function (req, res, next) {
   next()
 });
 app.use(function (req, res, next) {
-  res.locals.domain = `http://${url}` || "/";
   if (req.query.alert === "created") {
     res.locals.message = "Post created successfully!"
     res.locals.color = "alert-success"

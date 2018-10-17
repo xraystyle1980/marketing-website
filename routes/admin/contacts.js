@@ -41,7 +41,7 @@ router.delete('/delete/:id', function(req, res) {
             res.send(err);
 
         console.log("Contact deleted")
-        res.redirect(res.locals.domain+"contacts?alert=deleted")
+        res.redirect("/contacts?alert=deleted")
     });
 });
 router.put('/update/:id',function(req, res) {
@@ -62,7 +62,7 @@ router.put('/update/:id',function(req, res) {
                 res.send(err);
 
             console.log("Contact updated:", post);
-            res.redirect(res.locals.domain+'contacts/edit/'+post._id+'?alert=deleted')
+            res.redirect('/contacts/edit/'+post._id+'?alert=deleted')
         });
 
     });

@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
     if (err)
       res.send(err);
     console.log("Category created:", category);
-    res.redirect(res.locals.domain + "categories?alert=created")
+    res.redirect("/categories?alert=created")
   });
 });
 
@@ -52,7 +52,7 @@ router.delete('/delete/:id', function (req, res) {
       res.send(err);
 
     console.log("Category deleted")
-    res.redirect(res.locals.domain + "categories?alert=deleted")
+    res.redirect("/categories?alert=deleted")
   });
 });
 router.put('/update/:id', function (req, res) {
@@ -71,7 +71,7 @@ router.put('/update/:id', function (req, res) {
         res.send(err);
 
       console.log("Category updated:", category);
-      res.redirect(res.locals.domain + 'categories/edit/' + category._id + '?alert=deleted')
+      res.redirect('/categories/edit/' + category._id + '?alert=deleted')
     });
 
   });

@@ -10,17 +10,17 @@ block content
             li.list-group-item.mb-3
               h2.mr-3=category.name
               //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
-              form.d-flex.justify-content-between(method='POST', action=domain+'/categories/delete/'+category._id +'?_method=DELETE')
+              form.d-flex.justify-content-between(method='POST', action='/categories/delete/'+category._id +'?_method=DELETE')
                 if !public
                   .d-flex.align-items-center
                     //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
-                    a.btn.btn-outline-primary.mr-2(href=domain+"categories/edit/"+category._id) Edit
+                    a.btn.btn-outline-primary.mr-2(href="categories/edit/"+category._id) Edit
                     button.btn.btn-outline-danger(type='submit') delete
 
       .col-md-4
         
         //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
-        form.form-signin(method='POST', action=domain+'/categories?alert=create')
+        form.form-signin(method='POST', action='/categories?alert=create')
           h2 Create a new Category
           
           .mb-3

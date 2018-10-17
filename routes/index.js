@@ -34,7 +34,7 @@ router.post('/contact', async (req, res) => {
   contact.createdAt = new Date()
 
   if (!contact.email){
-    res.redirect(res.locals.domain+"?alert=error")
+    res.redirect("/?alert=error")
   }
 
   var contact = await contact.save()
@@ -62,12 +62,12 @@ router.post('/contact', async (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return console.log(error);
-        res.redirect(res.locals.domain+"?alert=error")
+        res.redirect("/?alert=error")
       }
       console.log('Message sent: %s', info.messageId);
       // Preview only available when sending through an Ethereal account
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-      res.redirect(res.locals.domain+"?alert=success")
+      res.redirect("/?alert=success")
   });
 });
 module.exports = router
