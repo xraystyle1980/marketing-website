@@ -13,7 +13,12 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//TODO get realy database records instead of this fake data
+const courses = [{name: "Orientation course", type: "oneyear"}, {name: "One year course", type: "orientation"}, {name: "Coaching course", type: "coaching"}]
+app.locals.courses = courses;
+
 app.use(function (req, res, next) {
+  //Logger
   console.log(req.method, req.headers.host + req.url)
   next()
 });
@@ -36,17 +41,20 @@ app.use(methodOverride('_method'));
 var mongoose = require('mongoose');
 mongoose.connect(mongopath);
 
-let categoryRoutes = require('./routes/admin/categories');
-let postRoutes = require('./routes/posts');
-let postsRoutes = require('./routes/admin/posts');
 let indexRoutes = require('./routes/index');
-let contactsRoutes = require('./routes/admin/contacts');
+let postsRoutes = require('./routes/posts');
+let coursesRoutes = require('./routes/courses');
+
+let categoryAdminRoutes = require('./routes/admin/categories');
+let postsAdminRoutes = require('./routes/admin/posts');
+let contactsAdminRoutes = require('./routes/admin/contacts');
 
 app.use("/", indexRoutes);
-app.use("/posts", postRoutes);
-app.use("/admin/posts", postsRoutes);
-app.use("/admin/categories", categoryRoutes);
-app.use("/admin/contacts", contactsRoutes);
+app.use("/posts", postsRoutes);
+app.use("/courses", coursesRoutes);
+app.use("/admin/posts", postsAdminRoutes);
+app.use("/admin/categories", categoryAdminRoutes);
+app.use("/admin/contacts", contactsAdminRoutes);
 
 app.set('views', path.join(__dirname, 'views/'));
 app.set('view engine', 'pug');

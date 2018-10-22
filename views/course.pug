@@ -1,0 +1,9 @@
+extends layout.pug
+block content
+  +navigation
+  if course.type == "oneyear"
+    +oneyear
+  else if course.type == "orientation"
+    +orientation
+  else if course.type == "coaching"
+    +coaching
