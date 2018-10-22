@@ -1,6 +1,6 @@
 mixin navigation
  nav.navbar.navbar-dark.navbar-expand-md.bg-primary.justify-content-center
-  a.navbar-brand.d-flex.w-50.mr-auto(href=domain) DCI
+  a.navbar-brand.d-flex.w-50.mr-auto(href="/") DCI
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsingNavbar3')
     span.navbar-toggler-icon
   #collapsingNavbar3.navbar-collapse.collapse.w-100
@@ -9,9 +9,8 @@ mixin navigation
         a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
           | Courses
         .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-          a.dropdown-item(href='/courses/coaching') One to One Coaching
-          a.dropdown-item(href='/admin/orientation') Orientation Course
-          a.dropdown-item(href='/courses/oneyear') One Year Program
+          each course in courses
+            a.dropdown-item(href='/courses/'+course.name)=course.name
       li.nav-item.dropdown
         a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
           | Events
