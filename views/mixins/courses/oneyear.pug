@@ -1,0 +1,409 @@
+mixin oneyear
+  body(data-spy='scroll', data-target='#myScrollspy', data-offset='1')
+    //
+      ----------------
+      JUMBOTRON
+      --------------------
+    .jumbotron.jumbotron-fluid.text-center
+      .container
+        h1 One Year Program
+        p Become a web developer in 12 months in
+        .dropdown
+          button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Berlin
+          .dropdown-menu(aria-labelledby='dropdownMenuButton')
+            a.dropdown-item(href='#') Düsseldorf
+            a.dropdown-item(href='#') Hamburg
+      button.btn.btn-primary.btn-lg(type='button') Request Syllabus
+      button.btn.btn-primary.btn-lg(type='button') Apply Now
+    .container-fluid
+      .row
+        //
+          ----------------
+          SCROLLSPY
+          --------------------
+        nav#myScrollspy.col-sm-3.col-4
+          ul.nav.nav-pills.flex-column
+            h4 Bootstrap Tutorial
+            li.nav-item
+              a.nav-link.active(href='#section1') Overview
+            li.nav-item
+              a.nav-link(href='#section2') What you will learn
+            li.nav-item
+              a.nav-link(href='#section3') Day at DCI
+            li.nav-item
+              a.nav-link(href='#section4') How to Apply
+            button.btn.btn-primary(type='button') Apply Now
+        .col-sm-9.col-8
+          //
+            ----------------
+            SECTION 1 - OVERVIEW
+            --------------------
+          #section1.sections
+            h2 Start Your Career in Web Development
+            p
+              | Want to become a professional web developer? This is how it’s done. In this intensive, fully immersive 12-months
+              | course with 9-months of learning and 3-months internship, we’ll teach you everything you need to know to unlock
+              | your spot in one of the fastest-growing industries.
+            .row.courseOverview.mt-5
+              figure.col-md-4.courseOverview-item
+                img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/students-on-class.png', alt='')
+                figcaption
+                  | Learn from professional developers
+              figure.col-md-4.courseOverview-item
+                img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/construction-worker.png', alt='')
+                figcaption
+                  | Develop your own project
+              figure.col-md-4.courseOverview-item
+                img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/job-search-in-newspapers.png', alt='')
+                figcaption
+                  | Ongoing career placement support
+          //
+            ----------------
+            SECTION 2 - WHAT YOU WILL LEARN
+            --------------------
+          #section2.sections
+            h2 What you will learn
+            .whatYouWillLearn
+              .whatYouWillLearn-item
+                figure
+                  img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/javascript-hand-drawn-file.png', alt='')
+                .whatYouWillLearn-itemText
+                  h4 Programming basics
+                  p
+                    | Learn the core skills of development – a beginner-friendly stack HTML, CSS and JavaScript.
+              .whatYouWillLearn-item
+                figure
+                  img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/sql-file-format-symbol.png', alt='')
+                .whatYouWillLearn-itemText
+                  h4 Specialisation
+                  p Specialise in technologies like Angular, Node.js and Databases. 
+              .whatYouWillLearn-item
+                figure
+                  img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/github-logo.png', alt='')
+                .whatYouWillLearn-itemText
+                  h4 Team Work in Development
+                  p Learn to work on a project with other developers. 
+              .whatYouWillLearn-item
+                figure
+                  img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/project-manager.png', alt='')
+                .whatYouWillLearn-itemText
+                  h4 Project Management
+                  p Learn agile project management and tools like scrum.
+              .whatYouWillLearn-item
+                figure
+                  img(src='https://digitalcareerinstitute.org/wp-content/uploads/2017/04/job-search-symbol-of-suitcase-and-curriculum-paper.png', alt='')
+                .whatYouWillLearn-itemText
+                  h4 Internship
+                  p
+                    | your steps into the job, do an internship in a tech company to apply what you have learned
+            //
+              ----------------
+              REQUEST A SYLLABUS
+              --------------------
+            form
+              h4.syllabus-header Want more details about our Web Development Course?
+              p.syllabus-details We will send you the full course information to your email
+              .row
+                .col
+                  input.form-control(type='text', placeholder='First name')
+                .col
+                  input.form-control(type='text', placeholder='Last name')
+                button.btn.btn-primary(type='button') Apply Now
+          //
+            ---------------------
+            SECTION 3 - DAY AT DCI
+            -----------------------
+          #section3.sections
+            h2 A Day at DCI
+            .courseTimes
+              .courseTimes-item
+                div
+                  span.courseTimes-itemTime  9:00 
+                .courseTimes-itemText
+                  h3.schedule-item-title Coffee & Code
+                  p.schedule-item-detail self paced learning session
+              .courseTimes-item
+                div
+                  span.courseTimes-itemTime 10:30 
+                .courseTimes-itemText
+                  h3.schedule-item-title Lesson
+                  p
+                    span(style='font-weight: 400;') Teacher summary + Group discussion + Quick test
+              .courseTimes-item
+                div
+                  span.courseTimes-itemTime 12:00 
+                .courseTimes-itemText
+                  h3.schedule-item-title Lunch & Buddy Meetup
+                  p.schedule-item-detail
+                    span(style='font-weight: 400;') Lunch, buddy lunch once a week
+              .courseTimes-item
+                div
+                  span.courseTimes-itemTime 12:30 
+                .courseTimes-itemText
+                  h3.schedule-item-title Project Work
+                  p.schedule-item-detail
+                    | Work on assignments to develop practical skills in a structured and supportive
+                    | environment.
+              .courseTimes-item
+                div
+                  span.courseTimes-itemTime 16:00 
+                .courseTimes-itemText
+                  h3.schedule-item-title Language Course
+                  p.schedule-item-detail Learn and improve your German and English with Expert instructors
+                  p  
+            .bellows__header
+              h3.additional-info-title.bellows__title.bellows__title--when-expanded More than just classwork
+              p.additional-info-title.bellows__title.bellows__title--when-expanded
+                | Beyond building the hard skills
+                | in class, you need to get involved in the local tech scene and market yourself. We’re here to help you succeed
+                | with career development support and opportunities to get into the community.
+              p.additional-info-title.bellows__title.bellows__title--when-expanded
+                strong
+                  | Career workshops
+                  br
+                | From preparing an industry-specific resume to creating an online presence, you’ll pick up the skills
+                |               to stand out.
+            .additional-info-content.bellows__content
+              .markdown
+                p
+                  strong
+                    | Guest speakers
+                    br
+                  | Experience additional specialized sessions from top professionals and get tips from Bitmaker alumni.
+                p
+                  strong
+                    | Company Tours
+                    br
+                  | Take a tour of a local startup and see what the work environment is all about.
+          //
+            ---------------------
+            SECTION 4 - HOW TO APPLY
+            -----------------------
+          #section4.sections
+            h2 How to Apply
+            .courseApply
+              .courseApply-step
+                span.courseApply-stepCount 1
+                p.courseApply-stepTitle Complete the application form
+              .courseApply-step
+                span.courseApply-stepCount 2
+                p.courseApply-stepTitle Visit DCI and chat with our admissions team
+              .courseApply-step
+                span.courseApply-stepCount 3
+                p.courseApply-stepTitle Reserve your spot
+            h2.section-block-title Come see our campus
+            p
+              | Have questions? Want to see the student life for yourself? Book a one-on-one visit with our admissions team
+              | and we’ll show you around.
+            address.visit-campus-address
+              address.Locations__campus_address___2iaHf(data-reactid='76')
+                address.Locations__campus_address___2iaHf(data-reactid='76')
+                  div
+                    p.section-hero-header-title Vulkanstraße 1
+                    p.section-hero-header-title 10367 Berlin
+          //
+            ---------------------
+            FOOTER
+            -----------------------
+          .footer-connect
+            .container
+              .footer-subscribe
+                form#mc-embedded-subscribe-form(novalidate='', target='_blank', name='mc-embedded-subscribe-form', method='post', action='//devugees.us14.list-manage.com/subscribe/post?u=02d566f673a5a5b6ecdfe5255&id=fbb4553560')
+                  input#mce-EMAIL.subs_input(type='text', placeholder='Email address', name='EMAIL')
+                  button.btn.btn-primary Subscribe
+        //
+          ---------------------
+          Site info
+          -----------------------
+        .site-info
+          .row
+            .col-xs-6.col-md-3
+              h5 Company
+              .menu-company-container
+                ul.menu
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/about-us/') About us
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/jobs/') Jobs
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/faq/') FAQ
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/press/') Press
+                  li
+                    a(href='https://digitalcareerinstitute.org/contact/') Contact
+            .col-xs-6.col-md-3
+              h5 Community
+              .menu-community-container
+                ul.menu
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/scholarship/') Scholarship
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/hire/') Hire your digital talents with DCI
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/stories/') Stories
+            .col-xs-6.col-md-3
+              h5 Courses
+              .menu-courses-container
+                ul.menu
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/onetoone-coaching/') One to One Coaching
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/orientiation-course/') Orientation Course
+                  li
+                    a(href='https://digitalcareerinstitute.org/en/courses/one-year-program/') One Year Program
+            .col-xs-6.col-md-3
+              h5 Follow
+              .menu-social-links-menue-container
+                ul.menu
+                  li
+                    a(href='https://www.facebook.com/devugees') Facebook
+                  li
+                    a(href='https://twitter.com/DevugeesOrg') Twitter
+                  li
+                    a(href='https://medium.com/devugees') Medium
+                  li
+                    a(href='https://www.youtube.com/channel/UCSM_3ldxjcclGTcXaJRBYTw') YouTube
+
+
+  style.
+   html {
+      scroll-behavior: smooth;
+    }
+    body {
+      position: relative;
+    }
+
+    /******************************************
+      SUB-CONTAINER WITH SCROLLSPY AND SECTIONS
+    *******************************************/
+    .container-fluid {
+      width: 66%;
+    }
+    .col-sm-9 {
+      padding-left: 45px;
+    }
+
+    /******************************************
+      SCROLLSPY
+    *******************************************/
+
+    ul.nav-pills {
+      padding-top: 0;
+      position: fixed;
+      list-style: none;
+    }
+
+    /******************************************
+      ALL SECTIONS
+    *******************************************/
+    .sections {
+      margin-bottom: 100px;
+    }
+
+    /******************************************
+      WHAT YOU WILL LEARN
+    *******************************************/
+
+    .whatYouWillLearn-item {
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: -ms-flex;
+      display: flex;
+      margin: 2rem 0;
+    }
+
+    /******************************************
+      A DAY AT DCI  
+    *******************************************/
+    .courseTimes-item {
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: -ms-flex;
+      display: flex;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+
+    .courseTimes-itemTime {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #007aff;
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      line-height: 70px;
+      display: block;
+      position: relative;
+      margin-right: 1.5rem;
+    }
+
+    .courseTimes-item:not(:last-child):before {
+      content: "";
+      height: 100%;
+      width: 4px;
+      background: #007aff;
+      position: absolute;
+      left: 33px;
+      top: 0;
+    }
+
+    /******************************************
+      HOW TO APPLY  
+    *******************************************/
+    .courseApply {
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: -ms-flex;
+      display: flex;
+      margin-top: 2rem;
+    }
+
+    .courseApply-step {
+      -webkit-flex: 1;
+      -moz-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      padding-right: 1rem;
+      position: relative;
+    }
+
+    .courseApply-stepCount {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #007aff;
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      line-height: 60px;
+      margin-bottom: 1rem;
+      display: block;
+      position: relative;
+    }
+    .courseApply-step:not(:last-child):before {
+      content: "";
+      background: #007aff;
+      height: 3px;
+      width: 100%;
+      position: absolute;
+      top: 30px;
+      left: 0;
+    }
+
+    .site-info {
+      padding-right: 0.9375rem;
+      padding-left: 0.9375rem;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .menu {
+      list-style-type: none;
+      padding: 0;
+    }
+
