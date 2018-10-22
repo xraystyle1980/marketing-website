@@ -21,6 +21,7 @@ router.get('/fetchevents', async (req, res) => {
 
     request(`https://www.eventbriteapi.com/v3/organizers/16608751086/events/?token=${process.env.EVENTBRIDE_API_KEY}&order_by=start_desc`, async (error, response, body) => {
       body = JSON.parse(body)
+      console.log('error:', error);
       var events = await body.events.map(async event => {
         var oldevent = await Event.findOne({ eventbride_id: event.id })
         if(!oldevent) {
