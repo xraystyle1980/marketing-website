@@ -8,6 +8,7 @@ const router = express.Router()
 
 const nodemailer = require('nodemailer');
 
+//LANDING PAGE ROUTE
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.find({})
@@ -24,6 +25,24 @@ router.get('/', async (req, res) => {
     console.log(err);
   }
 });
+
+//COURSES ROUTING
+router.get('/courses', async (req, res) => {
+  try {
+    const courses = [{name: "Orientation course", type: "oneyear"}, {name: "One year course", type: "orientation"}, {name: "Coaching course", type: "coaching"}]
+    //const categories = await Category.find({post.categories}).exec({});
+
+    res.render('courses', {
+      courses: courses
+    })
+  }
+  catch(err) {
+    console.log(err);
+  }
+});
+
+
+
 
 router.post('/contact', async (req, res) => {
   var contact = new Contact(); // create a new instance of the contact model

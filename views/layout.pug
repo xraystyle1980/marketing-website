@@ -3,17 +3,20 @@ include mixins/jumbotron
 include mixins/testimonialsCourses
 include mixins/testimonialsDevugees
 include mixins/statsCounter
-include mixins/postlist
 include mixins/quote
 include mixins/partners
 include mixins/subscribe
 include mixins/footer
 include mixins/postlist
 include mixins/contactform
+include mixins/courses/oneyear
+include mixins/courses/coaching
+include mixins/courses/orientation
+
 
 
 doctype html
-// saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/sign-in/
+//saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/sign-in/
 html(lang='en')
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
@@ -26,7 +29,7 @@ html(lang='en')
     // Custom styles for this template
   
 
-  body.text-center
+  body
     if message
       .alert.alert-dismissible.fade.show(role='alert', class=color, style="z-index: 1")
         strong= message
