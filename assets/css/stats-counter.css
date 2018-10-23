@@ -1,0 +1,13 @@
+h3 {
+  color: #0069d9;
+}
+
+.container-fluid {
+  padding: 0 100px 0 100px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 40px;
+}
