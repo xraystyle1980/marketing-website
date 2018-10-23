@@ -4,14 +4,14 @@ block content
   .container.mt-5.text-left
     .row
       .col-md-8
-        h2 Posts route
-        +postlist
+        h2 Stories route
+        +storylist
 
       .col-md-4
         
         //-to deploy this app I needed a helper. In .env ive set "https://tmy.menkent.uberspace.de/ultrablog/" and pass this in index.js:14 as a template helper per res.locals.domain to use here absolute paths
-        form.form-signin(method='POST', action='/admin/posts?alert=create')
-          h2 Create a new Post
+        form.form-signin(method='POST', action='/admin/stories?alert=create')
+          h2 Create a new Story
           
           .mb-3
             label.sr-only(for='inputName') Name

@@ -1,36 +1,33 @@
+const Category = require("../models/category");
+const Story = require("../models/story");
 
-const Category = require('../models/category');
-const Post = require('../models/post');
-
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
 //COURSES ROUTING
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     //TODO get the real courses from the database model
     //const courses = res.app.locals.course
 
-    res.render('courses', {
+    res.render("courses", {
       //courses: courses
-    })
-  }
-  catch(err) {
+    });
+  } catch (err) {
     console.log(err);
   }
 });
-router.get('/:course', async (req, res) => {
+router.get("/:course", async (req, res) => {
   try {
     //TODO get the real courses from the database model
-    const courses = res.app.locals.courses
-    const course = courses.find(n => n.name == req.params.course)
-    res.render(`course` , {
-      course: course,
-    })
-  }
-  catch(err) {
+    const courses = res.app.locals.courses;
+    const course = courses.find(n => n.name == req.params.course);
+    res.render(`course`, {
+      course: course
+    });
+  } catch (err) {
     console.log(err);
   }
 });
 
-module.exports = router
+module.exports = router;

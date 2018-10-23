@@ -1,5 +1,5 @@
 "use strict";
-const Post = require("../models/post");
+const Story = require("../models/story");
 const Contact = require("../models/contact");
 const Category = require("../models/category");
 
@@ -11,14 +11,14 @@ const nodemailer = require("nodemailer");
 //LANDING PAGE ROUTE
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find({})
+    const stories = await Story.find({})
       .populate("categories")
       .sort("order")
       .exec({});
-    //const categories = await Category.find({post.categories}).exec({});
+    //const categories = await Category.find({story.categories}).exec({});
 
     res.render("index", {
-      posts: posts
+      stories: stories
     });
   } catch (err) {
     console.log(err);
