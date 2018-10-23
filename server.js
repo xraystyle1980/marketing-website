@@ -29,13 +29,13 @@ app.use(function(req, res, next) {
 });
 app.use(function(req, res, next) {
   if (req.query.alert === "created") {
-    res.locals.message = "Post created successfully!";
+    res.locals.message = "Story created successfully!";
     res.locals.color = "alert-success";
   } else if (req.query.alert === "deleted") {
-    res.locals.message = "Post deleted successfully!";
+    res.locals.message = "Story deleted successfully!";
     res.locals.color = "alert-success";
   } else if (req.query.alert === "updated") {
-    res.locals.message = "Post updated successfully!";
+    res.locals.message = "Story updated successfully!";
     res.locals.color = "alert-success";
   }
   next();
@@ -47,19 +47,19 @@ var mongoose = require("mongoose");
 mongoose.connect(mongopath);
 
 let indexRoutes = require("./routes/index");
-let postsRoutes = require("./routes/posts");
+let storiesRoutes = require("./routes/stories");
 let eventsRoutes = require("./routes/events");
 let coursesRoutes = require("./routes/courses");
 
 let categoryAdminRoutes = require("./routes/admin/categories");
-let postsAdminRoutes = require("./routes/admin/posts");
+let storiesAdminRoutes = require("./routes/admin/stories");
 let contactsAdminRoutes = require("./routes/admin/contacts");
 
 app.use("/", indexRoutes);
-app.use("/posts", postsRoutes);
+app.use("/stories", storiesRoutes);
 app.use("/events", eventsRoutes);
 app.use("/courses", coursesRoutes);
-app.use("/admin/posts", postsAdminRoutes);
+app.use("/admin/stories", storiesAdminRoutes);
 app.use("/admin/categories", categoryAdminRoutes);
 app.use("/admin/contacts", contactsAdminRoutes);
 

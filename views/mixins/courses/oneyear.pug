@@ -5,10 +5,10 @@ mixin oneyear
       JUMBOTRON
       --------------------
     .jumbotron.jumbotron-fluid.text-center
-      .container
+      .jumbotron-courses-container
         h1=course.name
         p Become a web developer in 12 months in
-        .dropdown
+        .dropdown.dropdown-courses-location
           button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
             | Berlin
           .dropdown-menu(aria-labelledby='dropdownMenuButton')
@@ -16,14 +16,14 @@ mixin oneyear
             a.dropdown-item(href='#') Hamburg
       button.btn.btn-primary.btn-lg(type='button') Request Syllabus
       button.btn.btn-primary.btn-lg(type='button') Apply Now
-    .container-fluid
+    .container-fluid.container-fluid-courses
       .row
         //
           ----------------
           SCROLLSPY
           --------------------
         nav#myScrollspy.col-sm-3.col-4
-          ul.nav.nav-pills.flex-column
+          ul.nav.nav-pills.flex-column.nav-courses-pills
             h4 Bootstrap Tutorial
             li.nav-item
               a.nav-link.active(href='#section1') Overview
@@ -39,7 +39,7 @@ mixin oneyear
             ----------------
             SECTION 1 - OVERVIEW
             --------------------
-          #section1.sections
+          #section1.courses-sections
             h2 Start Your Career in Web Development
             p
               | Want to become a professional web developer? This is how it’s done. In this intensive, fully immersive 12-months
@@ -62,7 +62,7 @@ mixin oneyear
             ----------------
             SECTION 2 - WHAT YOU WILL LEARN
             --------------------
-          #section2.sections
+          #section2.courses-sections
             h2 What you will learn
             .whatYouWillLearn
               .whatYouWillLearn-item
@@ -114,7 +114,7 @@ mixin oneyear
             ---------------------
             SECTION 3 - DAY AT DCI
             -----------------------
-          #section3.sections
+          #section3.courses-sections
             h2 A Day at DCI
             .courseTimes
               .courseTimes-item
@@ -180,7 +180,7 @@ mixin oneyear
             ---------------------
             SECTION 4 - HOW TO APPLY
             -----------------------
-          #section4.sections
+          #section4.courses-sections
             h2 How to Apply
             .courseApply
               .courseApply-step
@@ -209,7 +209,7 @@ mixin oneyear
           .footer-connect
             .container
               .footer-subscribe
-                form#mc-embedded-subscribe-form(novalidate='', target='_blank', name='mc-embedded-subscribe-form', method='post', action='//devugees.us14.list-manage.com/subscribe/post?u=02d566f673a5a5b6ecdfe5255&id=fbb4553560')
+                form#mc-embedded-subscribe-form(novalidate='', target='_blank', name='mc-embedded-subscribe-form', method='POST', action='//devugees.us14.list-manage.com/subscribe/story?u=02d566f673a5a5b6ecdfe5255&id=fbb4553560')
                   input#mce-EMAIL.subs_input(type='text', placeholder='Email address', name='EMAIL')
                   button.btn.btn-primary Subscribe
         //
@@ -220,8 +220,8 @@ mixin oneyear
           .row
             .col-xs-6.col-md-3
               h5 Company
-              .menu-company-container
-                ul.menu
+              .info-company-container
+                ul.info
                   li
                     a(href='https://digitalcareerinstitute.org/en/about-us/') About us
                   li
@@ -234,8 +234,8 @@ mixin oneyear
                     a(href='https://digitalcareerinstitute.org/contact/') Contact
             .col-xs-6.col-md-3
               h5 Community
-              .menu-community-container
-                ul.menu
+              .info-community-container
+                ul.info
                   li
                     a(href='https://digitalcareerinstitute.org/en/scholarship/') Scholarship
                   li
@@ -244,8 +244,8 @@ mixin oneyear
                     a(href='https://digitalcareerinstitute.org/en/stories/') Stories
             .col-xs-6.col-md-3
               h5 Courses
-              .menu-courses-container
-                ul.menu
+              .info-courses-container
+                ul.info
                   li
                     a(href='https://digitalcareerinstitute.org/en/onetoone-coaching/') One to One Coaching
                   li
@@ -254,8 +254,8 @@ mixin oneyear
                     a(href='https://digitalcareerinstitute.org/en/courses/one-year-program/') One Year Program
             .col-xs-6.col-md-3
               h5 Follow
-              .menu-social-links-menue-container
-                ul.menu
+              .info-social-links-infoe-container
+                ul.info
                   li
                     a(href='https://www.facebook.com/devugees') Facebook
                   li
@@ -264,5 +264,3 @@ mixin oneyear
                     a(href='https://medium.com/devugees') Medium
                   li
                     a(href='https://www.youtube.com/channel/UCSM_3ldxjcclGTcXaJRBYTw') YouTube
-
-

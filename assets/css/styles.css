@@ -1,3 +1,8 @@
+/******************************************
+////////////////////////////////////////// 
+ ONE YEAR COURSE STYLING
+//////////////////////////////////////////
+*******************************************/
 html {
   scroll-behavior: smooth;
 }
@@ -6,9 +11,15 @@ body {
 }
 
 /******************************************
-     SUB-CONTAINER WITH SCROLLSPY AND SECTIONS
-   *******************************************/
-.container-fluid {
+  JUMBOTRON COURSES PAGES
+*******************************************/
+.jumbotron-pages {
+  text-align: center;
+}
+/******************************************
+  SUB-CONTAINER WITH SCROLLSPY AND SECTIONS
+*******************************************/
+.container-fluid-courses {
   width: 66%;
 }
 .col-sm-9 {
@@ -16,25 +27,25 @@ body {
 }
 
 /******************************************
-     SCROLLSPY
-   *******************************************/
+  SCROLLSPY
+*******************************************/
 
-ul.nav-pills {
+ul.nav-courses-pills {
   padding-top: 0;
   position: fixed;
   list-style: none;
 }
 
 /******************************************
-     ALL SECTIONS
-   *******************************************/
-.sections {
+  ALL SECTIONS
+*******************************************/
+.courses-sections {
   margin-bottom: 100px;
 }
 
 /******************************************
-     WHAT YOU WILL LEARN
-   *******************************************/
+  WHAT YOU WILL LEARN
+*******************************************/
 
 .whatYouWillLearn-item {
   display: -webkit-flex;
@@ -46,8 +57,8 @@ ul.nav-pills {
 }
 
 /******************************************
-     A DAY AT DCI  
-   *******************************************/
+  A DAY AT DCI  
+*******************************************/
 .courseTimes-item {
   display: -webkit-flex;
   display: -moz-flex;
@@ -83,8 +94,8 @@ ul.nav-pills {
 }
 
 /******************************************
-     HOW TO APPLY  
-   *******************************************/
+  HOW TO APPLY  
+*******************************************/
 .courseApply {
   display: -webkit-flex;
   display: -moz-flex;
@@ -133,7 +144,7 @@ ul.nav-pills {
   margin-left: auto;
 }
 
-.menu {
+.info {
   list-style-type: none;
   padding: 0;
 }
