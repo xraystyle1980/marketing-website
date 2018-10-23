@@ -57,9 +57,10 @@ app.use(methodOverride("_method"));
 var mongoose = require("mongoose");
 mongoose.connect(mongopath);
 
-let indexRoutes = require("./routes/index");
-let postsRoutes = require("./routes/posts");
-let coursesRoutes = require("./routes/courses");
+let indexRoutes = require('./routes/index');
+let postsRoutes = require('./routes/posts');
+let eventsRoutes = require('./routes/events');
+let coursesRoutes = require('./routes/courses');
 
 let categoryAdminRoutes = require("./routes/admin/categories");
 let postsAdminRoutes = require("./routes/admin/posts");
@@ -67,6 +68,7 @@ let contactsAdminRoutes = require("./routes/admin/contacts");
 
 app.use("/", indexRoutes);
 app.use("/posts", postsRoutes);
+app.use("/events", eventsRoutes);
 app.use("/courses", coursesRoutes);
 app.use("/admin/posts", postsAdminRoutes);
 app.use("/admin/categories", categoryAdminRoutes);
