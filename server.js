@@ -8,19 +8,8 @@ var bodyParser = require("body-parser");
 // this will let us get the data from a POST
 
 //app.use(express.static('./css'));
-app.use(
-  "/bootstrap",
-  express.static(path.join(__dirname, "node_modules/bootstrap/dist/"))
-);
-app.use("/css", express.static(path.join(__dirname, "views/css/")));
-app.use(
-  "/popper",
-  express.static(path.join(__dirname, "node_modules/popper.js/dist/umd/"))
-);
-app.use(
-  "/jquery",
-  express.static(path.join(__dirname, "node_modules/jquery/dist/"))
-);
+app.use("/assets", express.static(path.join(__dirname, "node_modules/")));
+app.use("/assets", express.static(path.join(__dirname, "assets/css/")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -57,10 +46,10 @@ app.use(methodOverride("_method"));
 var mongoose = require("mongoose");
 mongoose.connect(mongopath);
 
-let indexRoutes = require('./routes/index');
-let postsRoutes = require('./routes/posts');
-let eventsRoutes = require('./routes/events');
-let coursesRoutes = require('./routes/courses');
+let indexRoutes = require("./routes/index");
+let postsRoutes = require("./routes/posts");
+let eventsRoutes = require("./routes/events");
+let coursesRoutes = require("./routes/courses");
 
 let categoryAdminRoutes = require("./routes/admin/categories");
 let postsAdminRoutes = require("./routes/admin/posts");
