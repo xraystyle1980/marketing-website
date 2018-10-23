@@ -3,19 +3,11 @@
  ONE YEAR COURSE STYLING
 //////////////////////////////////////////
 *******************************************/
-html {
-  scroll-behavior: smooth;
-}
+
 body {
   position: relative;
 }
 
-/******************************************
-  JUMBOTRON COURSES PAGES
-*******************************************/
-.jumbotron-pages {
-  text-align: center;
-}
 /******************************************
   SUB-CONTAINER WITH SCROLLSPY AND SECTIONS
 *******************************************/
