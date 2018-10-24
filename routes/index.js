@@ -1,7 +1,9 @@
 "use strict";
+require("dotenv").config({ path: __dirname + "/../.env" });
 const Story = require("../models/story");
 const Contact = require("../models/contact");
 const Category = require("../models/category");
+const Location = require("../models/location");
 
 const express = require("express");
 const router = express.Router();
@@ -16,9 +18,11 @@ router.get("/", async (req, res) => {
       .sort("order")
       .exec({});
     //const categories = await Category.find({story.categories}).exec({});
+    const locations = await Location.find({})
 
     res.render("index", {
-      stories: stories
+      stories: stories,
+      locations: locations
     });
   } catch (err) {
     console.log(err);
@@ -34,41 +38,46 @@ router.post('/contact', async (req, res) => {
   contact.body = req.body.body;
   contact.createdAt = new Date();
 
+  contact.locations = req.body.locations; 
   if (!contact.email) {
     res.redirect("/?alert=error")
   }
 
-  var contact = await contact.save();
+  contact.save(function(err) {
+    if (err) res.send(err);
+    console.log("Contact created:", contact);
 
-  let transporter = nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PW
-    }
-  });
+    let transporter = nodemailer.createTransport({
+      host: process.env.MAILHOST,
+      port: process.env.MAILPORT,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: process.env.MAILUSER,
+        pass: process.env.MAILPW
+      }
+    });
 
-  // setup email data with unicode symbols
-  let mailOptions = {
-    from: contact.name,
-    to: 'tfkuhnert@gmail.com',
-    subject: `Message from ${contact.name}`,
-    text: `${contact.body}`,
-    html: `${contact.body}`,
-  };
+    //TODO Fix sending mails
+    // setup email data with unicode symbols
+    let mailOptions = {
+      from: contact.name,
+      to: process.env.MAILRECEIVER,
+      subject: `Message from ${contact.name}`,
+      text: `${contact.body}`,
+      html: `${contact.body}`
+    };
 
-  // send mail with defined transport object
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(error);
-      res.redirect("/?alert=error")
-    }
-    console.log('Message sent: %s', info.messageId);
-    // Preview only available when sending through an Ethereal account
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-    res.redirect("/?alert=success")
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+        res.redirect("/?alert=error");
+      }
+      console.log('#####', info);
+      console.log("Message sent: %s", info.messageId);
+    });
+
+    res.redirect("/?alert=success");
   });
 });
 module.exports = router;

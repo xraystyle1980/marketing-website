@@ -13,3 +13,8 @@ block content
               small.text-muted=contact.createdAt
               p.mr-3=contact.body
               a.mr-3(href='mailto:'+ contact.email)=contact.email
+              hr
+              h4 
+                span Interested in: 
+                each location in contact.locations
+                  .badge.badge-primary.mr-2=location.name

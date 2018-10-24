@@ -7,8 +7,10 @@ const { ensureAuthenticated } = require('../../helpers/passport')
 router.get("/", ensureAuthenticated, async function (req, res) {
   //here we get the whole collection and sort by order
   let contacts = await Contact.find({})
+    .populate('locations')
     .sort("order")
     .exec();
+
   res.render("admin/contacts", {
     contacts: contacts,
     message: res.locals.message,
