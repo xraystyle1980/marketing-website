@@ -2,8 +2,9 @@ const Contact = require("../../models/contact");
 
 const express = require("express");
 const router = express.Router();
+const { ensureAuthenticated } = require('../../helpers/passport')
 
-router.get("/", async function(req, res) {
+router.get("/", ensureAuthenticated, async function (req, res) {
   //here we get the whole collection and sort by order
   let contacts = await Contact.find({})
     .sort("order")
@@ -15,16 +16,16 @@ router.get("/", async function(req, res) {
   });
 });
 
-router.get("/:id", function(req, res) {
-  Contact.findById(req.params.id, function(err, story) {
+router.get("/:id", ensureAuthenticated, function (req, res) {
+  Contact.findById(req.params.id, function (err, story) {
     res.render("story", {
       story: story
     });
   });
 });
 
-router.get("/edit/:id", function(req, res) {
-  Contact.findById(req.params.id, function(err, story) {
+router.get("/edit/:id", ensureAuthenticated, function (req, res) {
+  Contact.findById(req.params.id, function (err, story) {
     res.render("editContact", {
       story: story,
       message: res.locals.message,
@@ -33,12 +34,12 @@ router.get("/edit/:id", function(req, res) {
   });
 });
 
-router.delete("/delete/:id", function(req, res) {
+router.delete("/delete/:id", ensureAuthenticated, function (req, res) {
   Contact.remove(
     {
       _id: req.params.id
     },
-    function(err, story) {
+    function (err, story) {
       if (err) res.send(err);
 
       console.log("Contact deleted");
@@ -46,9 +47,9 @@ router.delete("/delete/:id", function(req, res) {
     }
   );
 });
-router.put("/update/:id", function(req, res) {
+router.put("/update/:id", ensureAuthenticated, function (req, res) {
   // use our story model to find the story we want
-  Contact.findById(req.params.id, function(err, story) {
+  Contact.findById(req.params.id, function (err, story) {
     if (err) res.send(err);
 
     story.name = req.body.name; // update the contacts info
@@ -56,7 +57,7 @@ router.put("/update/:id", function(req, res) {
     story.order = req.body.order; // update the contacts info
 
     // save the story
-    story.save(function(err) {
+    story.save(function (err) {
       if (err) res.send(err);
 
       console.log("Contact updated:", story);

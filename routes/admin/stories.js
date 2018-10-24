@@ -3,8 +3,9 @@ const Story = require("../../models/story");
 
 const express = require("express");
 const router = express.Router();
+const { ensureAuthenticated } = require('../../helpers/passport')
 
-router.get("/", async function(req, res) {
+router.get("/", ensureAuthenticated, async function (req, res) {
   //here we get the whole collection and sort by order
   let stories = await Story.find({})
     .sort("order")
@@ -19,16 +20,16 @@ router.get("/", async function(req, res) {
   });
 });
 
-router.get("/:id", function(req, res) {
-  Story.findById(req.params.id, function(err, story) {
+router.get("/:id", ensureAuthenticated, function (req, res) {
+  Story.findById(req.params.id, function (err, story) {
     res.render("story", {
       story: story
     });
   });
 });
 
-router.get("/edit/:id", function(req, res) {
-  Story.findById(req.params.id, async function(err, story) {
+router.get("/edit/:id", ensureAuthenticated, function (req, res) {
+  Story.findById(req.params.id, async function (err, story) {
     let allcategories = await Category.find({}).exec();
     all = allcategories.map(cat => {
       let match = story.categories
@@ -51,7 +52,7 @@ router.get("/edit/:id", function(req, res) {
   });
 });
 
-router.post("/", function(req, res) {
+router.post("/", ensureAuthenticated, function (req, res) {
   var story = new Story(); // create a new instance of the story model
   story.name = req.body.name; // set the stories name (comes from the request)
   story.content = req.body.content; // set the stories name (comes from the request)
@@ -59,19 +60,19 @@ router.post("/", function(req, res) {
   story._categories = req.body.categories; // set the stories name (comes from the
 
   // save the story and check for errors
-  story.save(function(err) {
+  story.save(function (err) {
     if (err) res.send(err);
     console.log("Story created:", story);
     res.redirect("/admin/stories?alert=created");
   });
 });
 
-router.delete("/delete/:id", function(req, res) {
+router.delete("/delete/:id", ensureAuthenticated, function (req, res) {
   Story.remove(
     {
       _id: req.params.id
     },
-    function(err, story) {
+    function (err, story) {
       if (err) res.send(err);
 
       console.log("Story deleted");
@@ -79,9 +80,9 @@ router.delete("/delete/:id", function(req, res) {
     }
   );
 });
-router.put("/update/:id", function(req, res) {
+router.put("/update/:id", ensureAuthenticated, function (req, res) {
   // use our story model to find the story we want
-  Story.findById(req.params.id, function(err, story) {
+  Story.findById(req.params.id, function (err, story) {
     if (err) res.send(err);
 
     story.name = req.body.name; // update the stories info
@@ -90,7 +91,7 @@ router.put("/update/:id", function(req, res) {
     story.categories = req.body.categories;
 
     // save the story
-    story.save(function(err) {
+    story.save(function (err) {
       if (err) res.send(err);
 
       console.log("Story updated:", story);

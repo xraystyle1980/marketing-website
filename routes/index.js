@@ -25,14 +25,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-var ensureAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    //req.flash('error_msg','You are not logged in');
-    res.redirect('/users/login');
-  }
-};
 
 router.post('/contact', async (req, res) => {
   var contact = new Contact(); // create a new instance of the contact model
@@ -43,7 +35,7 @@ router.post('/contact', async (req, res) => {
   contact.createdAt = new Date();
 
   if (!contact.email) {
-    res.redirect("/?alert=error");
+    res.redirect("/?alert=error")
   }
 
   var contact = await contact.save();
@@ -71,12 +63,12 @@ router.post('/contact', async (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       return console.log(error);
-      res.redirect("/?alert=error");
+      res.redirect("/?alert=error")
     }
-    console.log("Message sent: %s", info.messageId);
+    console.log('Message sent: %s', info.messageId);
     // Preview only available when sending through an Ethereal account
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    res.redirect("/?alert=success");
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    res.redirect("/?alert=success")
   });
 });
 module.exports = router;

@@ -12,7 +12,9 @@ router.get('/register', function (req, res) {
 
 // Login
 router.get('/login', function (req, res) {
+
   res.render('login');
+
 });
 
 // Register User
@@ -32,7 +34,6 @@ router.post('/register', function (req, res) {
   req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
   var errors = req.validationErrors();
-
   if (errors) {
     res.render('register', {
       errors: errors
@@ -48,13 +49,13 @@ router.post('/register', function (req, res) {
       if (err) throw err;
       console.log(user);
     });
-    req.flash('success_msg', 'You are registered and can now login');
     res.redirect('/users/login');
   }
 });
 
 passport.use(
   new LocalStrategy((username, password, done) => {
+    console.log("GRRR", username)
     User.getUserByUsername(username, (err, user) => {
       if (err) throw err;
       if (!user) {
@@ -86,18 +87,16 @@ router.post(
   '/login',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/login',
-    failureFlash: true
+    failureRedirect: '/users/login'
   }),
   (req, res) => {
     res.redirect('/');
   }
 );
 
-// router.get('/logout', (req, res) => {
-//   req.logout();
-//   req.flash('success_msg', 'You are logged out');
-//   res.redirect('/users/login');
-// });
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/users/login');
+});
 
 module.exports = router;
