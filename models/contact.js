@@ -3,9 +3,17 @@ var Schema       = mongoose.Schema;
 
 var ContactSchema   = new Schema({
     name: String,
+    locations: [{ type: Schema.ObjectId, ref: "Location" }],
     email: String,
     body: String,
-    createdAt: Date
+    updatedAt: {
+      type: Date,
+      default: Date.now 
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now 
+    }
 });
 
 module.exports = mongoose.model('Contact', ContactSchema);

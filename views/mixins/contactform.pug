@@ -22,4 +22,9 @@ mixin contactform
           .invalid-feedback
             | Valid last name is required.
 
+          each location in locations
+            .custom-control.custom-checkbox
+              input.custom-control-input(name="locations" type='checkbox' id=location.name value=location._id  checked=(location.selected))
+              label.custom-control-label(for=location.name)=location.name
+
           button.btn.btn-primary(type="submit") Send!

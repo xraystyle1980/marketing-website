@@ -79,6 +79,7 @@ let coursesRoutes = require("./routes/courses");
 
 let categoryAdminRoutes = require("./routes/admin/categories");
 let storiesAdminRoutes = require("./routes/admin/stories");
+let locationsAdminRoutes = require("./routes/admin/locations");
 let contactsAdminRoutes = require("./routes/admin/contacts");
 
 app.use("/", indexRoutes);
@@ -87,6 +88,7 @@ app.use("/stories", storiesRoutes);
 app.use("/events", eventsRoutes);
 app.use("/courses", coursesRoutes);
 app.use("/admin/stories", storiesAdminRoutes);
+app.use("/admin/locations", locationsAdminRoutes);
 app.use("/admin/categories", categoryAdminRoutes);
 app.use("/admin/contacts", contactsAdminRoutes);
 
