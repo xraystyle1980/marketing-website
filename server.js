@@ -3,6 +3,11 @@ const express = require("express");
 const app = express();
 var path = require("path");
 var bodyParser = require("body-parser");
+var expressValidator = require('express-validator');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+const MongoStore = require('connect-mongo')(session);
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -13,6 +18,7 @@ app.use("/assets", express.static(path.join(__dirname, "assets/css/")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 //TODO get realy database records instead of this fake data
 const courses = [
@@ -22,12 +28,12 @@ const courses = [
 ];
 app.locals.courses = courses;
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   //Logger
   console.log(req.method, req.headers.host + req.url);
   next();
 });
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   if (req.query.alert === "created") {
     res.locals.message = "Story created successfully!";
     res.locals.color = "alert-success";
@@ -37,6 +43,9 @@ app.use(function(req, res, next) {
   } else if (req.query.alert === "updated") {
     res.locals.message = "Story updated successfully!";
     res.locals.color = "alert-success";
+  } else if (req.query.alert === "success_msg") {
+    res.locals.message = "You are registered and can now login!"
+    res.locals.color = "alert-success"
   }
   next();
 });
@@ -44,9 +53,26 @@ var methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
 var mongoose = require("mongoose");
-mongoose.connect(mongopath);
+mongoose.connect(process.env.MONGOURL);
+
+// Express Session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'notaverysecuresecret',
+    key: process.env.SESSION_KEY || 'notaverysecurekey',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 let indexRoutes = require("./routes/index");
+let usersRoutes = require('./routes/users');
 let storiesRoutes = require("./routes/stories");
 let eventsRoutes = require("./routes/events");
 let coursesRoutes = require("./routes/courses");
@@ -56,6 +82,7 @@ let storiesAdminRoutes = require("./routes/admin/stories");
 let contactsAdminRoutes = require("./routes/admin/contacts");
 
 app.use("/", indexRoutes);
+app.use('/users', usersRoutes);
 app.use("/stories", storiesRoutes);
 app.use("/events", eventsRoutes);
 app.use("/courses", coursesRoutes);

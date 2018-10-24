@@ -2,8 +2,9 @@ const Category = require("../../models/category");
 
 const express = require("express");
 const router = express.Router();
+const { ensureAuthenticated } = require('../../helpers/passport')
 
-router.get("/", async function(req, res) {
+router.get("/", ensureAuthenticated, async function (req, res) {
   //here we get the whole collection and sort by order
   let categories = await Category.find({}).exec();
   res.render("admin/categories", {
@@ -13,16 +14,16 @@ router.get("/", async function(req, res) {
   });
 });
 
-router.get("/:id", function(req, res) {
-  Category.findById(req.params.id, function(err, category) {
+router.get("/:id", ensureAuthenticated, function (req, res) {
+  Category.findById(req.params.id, function (err, category) {
     res.render("category", {
       category: category
     });
   });
 });
 
-router.get("/edit/:id", function(req, res) {
-  Category.findById(req.params.id, function(err, category) {
+router.get("/edit/:id", ensureAuthenticated, function (req, res) {
+  Category.findById(req.params.id, function (err, category) {
     res.render("editCategory", {
       category: category,
       message: res.locals.message,
@@ -31,24 +32,24 @@ router.get("/edit/:id", function(req, res) {
   });
 });
 
-router.post("/", function(req, res) {
+router.post("/", ensureAuthenticated, function (req, res) {
   var category = new Category(); // create a new instance of the category model
   category.name = req.body.name; // set the categories name (comes from the request)
 
   // save the category and check for errors
-  category.save(function(err) {
+  category.save(function (err) {
     if (err) res.send(err);
     console.log("Category created:", category);
     res.redirect("/categories?alert=created");
   });
 });
 
-router.delete("/delete/:id", function(req, res) {
+router.delete("/delete/:id", ensureAuthenticated, function (req, res) {
   Category.remove(
     {
       _id: req.params.id
     },
-    function(err, category) {
+    function (err, category) {
       if (err) res.send(err);
 
       console.log("Category deleted");
@@ -56,15 +57,15 @@ router.delete("/delete/:id", function(req, res) {
     }
   );
 });
-router.put("/update/:id", function(req, res) {
+router.put("/update/:id", ensureAuthenticated, function (req, res) {
   // use our category model to find the category we want
-  Category.findById(req.params.id, function(err, category) {
+  Category.findById(req.params.id, function (err, category) {
     if (err) res.send(err);
 
     category.name = req.body.name; // update the categories info
 
     // save the category
-    category.save(function(err) {
+    category.save(function (err) {
       if (err) res.send(err);
 
       console.log("Category updated:", category);
