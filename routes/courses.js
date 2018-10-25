@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     //const courses = res.app.locals.course
 
     res.render("courses", {
-      //courses: courses
+      courses: courses
     });
   } catch (err) {
     console.log(err);
