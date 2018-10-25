@@ -32,5 +32,9 @@ mixin navigation
           a.dropdown-item(href='/admin/contacts') Become a buddy
           a.dropdown-item(href='/admin/contacts') Teach at DCI
           a.dropdown-item(href='/admin/contacts') Jobs
-        li.nav-item
-          a.nav-link(href='/users/login') Login
+        if user
+          li.nav-item
+            a.nav-link(href='/users/logout') Logout
+        else
+          li.nav-item
+            a.nav-link(href='/users/login') Login
