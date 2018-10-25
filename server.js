@@ -8,6 +8,7 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 const MongoStore = require('connect-mongo')(session);
+const promisify = require('es6-promisify');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -69,6 +70,20 @@ app.use(
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
+
+// pass variables to our templates + all requests
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  res.locals.currentPath = req.path;
+  next();
+});
+
+// promisify some callback based APIs
+app.use((req, res, next) => {
+  req.login = promisify(req.login, req);
+  next();
+});
+
 
 
 let indexRoutes = require("./routes/index");
