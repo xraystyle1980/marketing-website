@@ -37,7 +37,8 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "seed": "node seeds.js",
     "seed:delete": "node seeds.js --delete",
     "test": "NODE_ENV=test mocha test/ --timeout 10000 --exit"
