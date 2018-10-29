@@ -1,7 +1,10 @@
 mixin contactform
-  .my-5.px-5
-    .mb-5.px-md-5
-      h1 Contact
+  section#contactUs.cf-section.container
+    .my-5.px-5
+      .mb-5.px-md-5.section-title-area
+        h2.section-title Contact
+        h3.cf-title
+          | Let’s connect! Our admissions team will call you soon to chat about our courses and your goals.
       form(method="POST" action="/contact")
         .row
           .col-md-6.mb-3
@@ -26,5 +29,23 @@ mixin contactform
             .custom-control.custom-checkbox
               input.custom-control-input(name="locations" type='checkbox' id=location.name value=location._id  checked=(location.selected))
               label.custom-control-label(for=location.name)=location.name
+          
+          p.mt-4
+            span.contactForm-form-control-wrap.TermsofService    
+              input(type='checkbox', name='TermsofService[]', value='I have read and agree to the')
+              span.contactForm-list-item-label.ml-2 I have read and agree to the
+            a.ml-1(href='https://www.digitalcareerinstitute.org/dataprivacy/')
+              | Data
+              | Privacy
+          p
+            span.contactForm-form-control-wrap.StorageofData
+              input(type='checkbox', name='StorageofData[]', value='I agree to my data being stored and used to receive the newsletter.')
+              span.contactForm-list-item-label.ml-2 I agree to my data being stored and used to receive the newsletter.
+          p
+            span.contactForm-form-control-wrap.Commercials
+              input(type='checkbox', name='Commercials[]', value='I agree to receive information and commercial offers.')
+              span.contactForm-list-item-label.ml-2
+                | I
+                | agree to receive information and commerccontactFormial offers.
 
           button.btn.btn-primary(type="submit") Send!
