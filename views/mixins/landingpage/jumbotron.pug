@@ -1,10 +1,14 @@
 mixin jumbotron
- .jumbotron.jumbotron-fluid
-  .container-fluid
-    h1.display-4 Start your digital Career
-    hr.my-4
-    p.mb-5
-      | Learn digital skills with us to get the most fulfilling jobs.
-    p.lead
-      a.btn.btn-primary.btn-lg.mr-2(href='/courses', role='button') Courses
-      a.btn.btn-primary.btn-lg.ml-2(href='/contactform', role='button') Contact
+  section
+    .jumbotron.jumbotron-fluid.jumbotron-courses
+      .container
+        h1.jumbotron-header Start your digital Career
+        p.paragraph-jumbotron
+          | Learn digital skills with us 
+          br
+          |  get the most fulfilling jobs.
+        .btn-group
+          a.btn.btn-primary.btn-lg.active(href='/courses', role='button') Brows Courses
+          a.btn.ml-3.btn-secondary.rounded.mx-1.contact-us-btn(href='#contactUs', role='button')
+            |  Contact Us
+

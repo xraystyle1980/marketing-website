@@ -1,13 +1,26 @@
-h3 {
-  color: #0069d9;
+.counter-item {
+  text-align: center;
 }
 
-.container-fluid {
-  padding: 0 100px 0 100px;
+.section-counter {
+  padding: 3rem 0;
+}
+.counter-item .counter-number {
+  font-size: 5rem;
+  font-weight: 400;
+  color: #007aff;
+  line-height: 1;
+}
+.counter-item .counter-title {
+  font-size: 1.2rem;
 }
 
-.section-title {
-  font-weight: bold;
-  font-size: 3rem;
-  margin-bottom: 40px;
+.row::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+.row {
+  margin-right: -0.9375rem;
+  margin-left: -0.9375rem;
 }
