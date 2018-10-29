@@ -3,12 +3,12 @@ const express = require("express");
 const app = express();
 var path = require("path");
 var bodyParser = require("body-parser");
-var expressValidator = require('express-validator');
-var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-const MongoStore = require('connect-mongo')(session);
-const promisify = require('es6-promisify');
+var expressValidator = require("express-validator");
+var session = require("express-session");
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
+const MongoStore = require("connect-mongo")(session);
+const promisify = require("es6-promisify");
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -16,6 +16,7 @@ const promisify = require('es6-promisify');
 //app.use(express.static('./css'));
 app.use("/assets", express.static(path.join(__dirname, "node_modules/")));
 app.use("/assets", express.static(path.join(__dirname, "assets/css/")));
+app.use("/media", express.static(path.join(__dirname, "assets/media/")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -29,12 +30,12 @@ const courses = [
 ];
 app.locals.courses = courses;
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   //Logger
   console.log(req.method, req.headers.host + req.url);
   next();
 });
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   if (req.query.alert === "created") {
     res.locals.message = "Story created successfully!";
     res.locals.color = "alert-success";
@@ -45,8 +46,8 @@ app.use(function (req, res, next) {
     res.locals.message = "Story updated successfully!";
     res.locals.color = "alert-success";
   } else if (req.query.alert === "success_msg") {
-    res.locals.message = "You are registered and can now login!"
-    res.locals.color = "alert-success"
+    res.locals.message = "You are registered and can now login!";
+    res.locals.color = "alert-success";
   }
   next();
 });
@@ -59,8 +60,8 @@ mongoose.connect(process.env.MONGOURL);
 // Express Session
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'notaverysecuresecret',
-    key: process.env.SESSION_KEY || 'notaverysecurekey',
+    secret: process.env.SESSION_SECRET || "notaverysecuresecret",
+    key: process.env.SESSION_KEY || "notaverysecurekey",
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection })
@@ -84,10 +85,8 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 let indexRoutes = require("./routes/index");
-let usersRoutes = require('./routes/users');
+let usersRoutes = require("./routes/users");
 let storiesRoutes = require("./routes/stories");
 let eventsRoutes = require("./routes/events");
 let coursesRoutes = require("./routes/courses");
@@ -98,7 +97,7 @@ let locationsAdminRoutes = require("./routes/admin/locations");
 let contactsAdminRoutes = require("./routes/admin/contacts");
 
 app.use("/", indexRoutes);
-app.use('/users', usersRoutes);
+app.use("/users", usersRoutes);
 app.use("/stories", storiesRoutes);
 app.use("/events", eventsRoutes);
 app.use("/courses", coursesRoutes);
