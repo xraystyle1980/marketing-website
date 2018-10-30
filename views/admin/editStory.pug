@@ -17,7 +17,8 @@ block content
             textarea#inputContent.form-control(rows='20' name='content', type='password', placeholder='Content', required='')=story.content
           .mb-3
             label.sr-only(for='inputContent') Order
-            input#inputOrder.form-control(name='order', type='number', placeholder='Order', value=story.order, required='', autofocus='')
+            input#inputOrder.form-control(name='order', type='number',
+            min=-1 max=maxOrder placeholder='Order', value=story.order, required='', autofocus='')
             
             each category in categories
               .custom-control.custom-checkbox

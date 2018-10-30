@@ -22,11 +22,14 @@ module.exports.getStories = async function (req, res) {
 module.exports.getSingleStory = function (req, res) {
   Story.findById(req.params.id, function (err, story) {
     res.render("story", {
-      story: story
+      story: story,
     });
   });
 }
-module.exports.editStory = function (req, res) {
+module.exports.editStory = async function (req, res) {
+  let stories = await Story.find({})
+    .sort("order")
+    .exec();
   Story.findById(req.params.id, async function (err, story) {
     let allcategories = await Category.find({}).exec();
     all = allcategories.map(cat => {
@@ -40,9 +43,12 @@ module.exports.editStory = function (req, res) {
         return cat._doc;
       }
     });
+    console.log('#####', stories.length);
+    const shiftStoryBack = stories.length + 1
 
     res.render("admin/editStory", {
       story: story,
+      maxOrder: shiftStoryBack,
       categories: all,
       message: res.locals.message,
       color: res.locals.color
