@@ -1,7 +1,7 @@
 html {
   scroll-behavior: smooth;
 }
-.navbar {
+.navbar.landingpage {
   position: absolute;
   width: 100%;
   z-index: +1;

@@ -1,10 +1,20 @@
 mixin navigation
- nav.navbar.navbar-dark.navbar-expand-md.bg-primary.justify-content-center
+ nav.navbar.navbar-dark.navbar-expand-md.bg-primary.justify-content-center(class=currentPath == "/" ? "fixed-top" : "")
   a.navbar-brand.d-flex.w-50.mr-auto(href="/") DCI
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsingNavbar3')
     span.navbar-toggler-icon
   #collapsingNavbar3.navbar-collapse.collapse.w-100
     ul.nav.navbar-nav.ml-auto.w-100.justify-content-end
+      if user
+        li.nav-item.dropdown
+          a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Admin
+          .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+            a.dropdown-item(href='/admin/contacts') Contacts
+            a.dropdown-item(href='/admin/categories') Categories
+            a.dropdown-item(href='/admin/locations') Locations
+            a.dropdown-item(href='/admin/stories') Stories
+
       li.nav-item.dropdown
         a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
           | Courses
