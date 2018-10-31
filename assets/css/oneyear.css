@@ -3,7 +3,7 @@
  ONE YEAR COURSE STYLING
 //////////////////////////////////////////
 *******************************************/
-body {
+.body-scroll {
   position: relative;
 }
 
@@ -22,8 +22,8 @@ body {
 *******************************************/
 
 ul.nav-courses-pills {
-  padding-top: 0;
-  position: fixed;
+  top: 0;
+  position: sticky;
   list-style: none;
 }
 
