@@ -1,5 +1,5 @@
 const Category = require("../models/category");
-const Story = require("../models/story");
+const Course = require("../models/course");
 
 const express = require("express");
 const router = express.Router();
@@ -8,7 +8,10 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     //TODO get the real courses from the database model
-    //const courses = res.app.locals.course
+    let courses = await Course.find({})
+      .sort("name")
+      .exec();
+    let categories = await Category.find({}).exec();
 
     res.render("courses", {
       courses: courses
@@ -20,10 +23,11 @@ router.get("/", async (req, res) => {
 router.get("/:course", async (req, res) => {
   try {
     //TODO get the real courses from the database model
-    const courses = res.app.locals.courses;
-    const course = courses.find(n => n.name == req.params.course);
+    let course = Course.find({ name: req.params.course });
+    console.log(course)
     res.render(`course`, {
       course: course
+
     });
   } catch (err) {
     console.log(err);

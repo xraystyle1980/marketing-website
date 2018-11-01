@@ -12,6 +12,7 @@ const Story = require("./models/story");
 const Category = require("./models/category");
 const Contact = require("./models/contact");
 const Location = require("./models/location");
+const Course = require("./models/course");
 
 const categories = [
   {
@@ -58,6 +59,22 @@ const locations = [
     address: "Hafenstrasse 1, 20499 Hamburg"
   }
 ]
+
+const courses = [
+  {
+    name: "Orientation course",
+    content: "One month course"
+  },
+  {
+    name: "One year course",
+    content: "One year course"
+  },
+  {
+    name: "Coaching course",
+    content: "Six months course"
+  }
+]
+
 const date = new Date().getTime()
 const contacts = [
   {
@@ -91,6 +108,7 @@ async function deleteData() {
   await Story.remove();
   await Category.remove();
   await Location.remove();
+  await Course.remove();
   await Contact.remove();
   console.log("Data Deleted. To load sample data, run\n\n\t node seeds.js\n\n");
   process.exit();
@@ -98,7 +116,7 @@ async function deleteData() {
 
 async function seedRandomNtoN(arrayOfRecords, relationship, model) {
   arrayOfRecords.map((record, index) => {
-    var randomSetter = Math.floor( Math.random(relationship.length) * relationship.length + 1);
+    var randomSetter = Math.floor(Math.random(relationship.length) * relationship.length + 1);
     record[model.collection.name] = [];
     for (let i = 0; i < randomSetter; i++) {
       return record[model.collection.name][i] = relationship[randomSetter - 1]._id.toString();
@@ -112,6 +130,7 @@ async function loadData() {
   try {
     const createdCategories = await Category.insertMany(categories);
     const createdLocations = await Location.insertMany(locations);
+    const createdCourse = await Course.insertMany(courses);
 
     var associatedCategories = await seedRandomNtoN(stories, createdCategories, Category)
     var associatedLocations = await seedRandomNtoN(contacts, createdLocations, Location)
